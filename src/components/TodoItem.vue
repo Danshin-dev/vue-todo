@@ -3,7 +3,7 @@
     <input type="checkbox" v-on:change="todo.completed = !todo.completed" />
     <strong class="ml-2">{{ index + 1 }}</strong>
     <span class="ml-2" v-bind:class="{ done: todo.completed }">{{
-      todo.title
+      todo.title | upperCase
     }}</span>
     <button
       class="btn btn-outline-danger ml-auto"
@@ -21,7 +21,12 @@ export default {
       type: Object,
       required: true
     },
-    index : Number
+    index: Number
+  },
+  filters: {
+    upperCase(value) {
+      return value.toUpperCase();
+    }
   }
 };
 </script>
