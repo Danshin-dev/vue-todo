@@ -3,7 +3,12 @@
     <add-todo @add-todo="addTodo" />
     <router-link to="/" class="text-center">Go homepage</router-link>
     <hr />
-    <TodoList v-bind:todos="todos" @remove-todo="removeTodo" />
+    <TodoList
+      v-bind:todos="todos"
+      @remove-todo="removeTodo"
+      v-if="todos.length"
+    />
+    <p class="text-center" v-else>No todos</p>
   </div>
 </template>
 
