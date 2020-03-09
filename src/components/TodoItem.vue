@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded p-2 d-flex align-items-center">
+  <div class="border rounded p-2 d-flex align-items-center mb-1">
     <input type="checkbox" v-on:change="todo.completed = !todo.completed" />
     <strong class="ml-2">{{ index + 1 }}</strong>
     <span class="ml-2" v-bind:class="{ done: todo.completed }">{{

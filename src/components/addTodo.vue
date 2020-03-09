@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submitHandler">
-    <div class="row">
+    <div class="row pb-2">
       <div class="col">
         <input
           type="text"
