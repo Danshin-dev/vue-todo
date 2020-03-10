@@ -18,17 +18,14 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   methods: {
+    ...mapActions(["sendTodo"]),
     submitHandler() {
       if (this.title.trim()) {
-        const newTodo = {
-          id: Date.now(),
-          title: this.title,
-          complite: false
-        };
-
-        this.$emit("add-todo", newTodo);
+        this.sendTodo(this.title);
         this.title = "";
       }
     }

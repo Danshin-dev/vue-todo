@@ -4,7 +4,7 @@
       v-for="(todo , index) of todos"
       v-bind:todo="todo"
       v-bind:index="index"
-      v-bind:key="todo.id"
+      v-bind:key="index"
       v-on:remove-todo="removeTodo"
     />
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <add-todo @add-todo="addTodo" />
+    <add-todo />
     <select v-model="filter">
       <option value="all">All</option>
       <option value="completed">Completed</option>
@@ -10,29 +10,23 @@
     <router-link to="/" class="text-center">Go homepage</router-link>
     <hr />
     <TodoList
-      v-bind:todos="filteredProps"
+      v-bind:todos="this.filterTodos(this.filter)"
       @remove-todo="removeTodo"
-      v-if="filteredProps.length"
+      v-if="this.filterTodos(this.filter)"
     />
     <p class="text-center" v-else>No todos</p>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import addTodo from "@/components/addTodo";
 import TodoList from "@/components/TodoList";
 
 export default {
-  name: "App",
   components: { addTodo, TodoList },
   data() {
     return {
-      todos: [
-        { id: 1, title: "Выучить vue", completed: false },
-        { id: 2, title: "Выучить vuex", completed: false },
-        { id: 3, title: "Выучить vue-route", completed: false },
-        { id: 4, title: "Написать todo на vue", completed: false }
-      ],
       filter: "all"
     };
   },
@@ -45,17 +39,7 @@ export default {
     }
   },
   computed: {
-    filteredProps() {
-      if (this.filter === "completed") {
-        return this.todos.filter(t => t.completed);
-      }
-
-      if (this.filter === "not-completed") {
-        return this.todos.filter(t => !t.completed);
-      }
-
-      return this.todos;
-    }
+    ...mapGetters(["allTodos" , "filterTodos"])
   }
 };
 </script>
